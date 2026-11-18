@@ -1,0 +1,51 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --accent-soft: #eef2ff;
+}
+[data-accent='emerald'] {
+  --accent: #059669;
+  --accent-hover: #047857;
+  --accent-soft: #ecfdf5;
+}
+[data-accent='rose'] {
+  --accent: #e11d48;
+  --accent-hover: #be123c;
+  --accent-soft: #fff1f2;
+}
+
+body {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+.dark body {
+  background-color: #020617;
+  color: #e2e8f0;
+}
+
+.btn-accent {
+  background-color: var(--accent);
+  color: #fff;
+}
+.btn-accent:hover:not(:disabled) {
+  background-color: var(--accent-hover);
+}
+.btn-accent:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.text-accent {
+  color: var(--accent);
+}
+.bg-accent-soft {
+  background-color: var(--accent-soft);
+}
+.dark .bg-accent-soft {
+  background-color: rgba(148, 163, 184, 0.12);
+}
+.border-accent {
+  border-color: var(--accent);
+}
