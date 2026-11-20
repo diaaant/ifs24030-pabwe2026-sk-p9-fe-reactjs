@@ -7,10 +7,10 @@ Toast UI Editor/Viewer, SweetAlert2, dan Tabler Icons.
 
 ```bash
 npm install
-npm run dev        # http://localhost:5174 (proxy /api -> http://localhost:8081)
+npm run dev        # http://localhost:5174 (proxy /api -> http://localhost:8080)
 ```
 
-Pastikan backend berjalan di port 8081.
+Pastikan backend berjalan di port 8080.
 
 ## Pengujian (100% statements, branches, functions, lines)
 
