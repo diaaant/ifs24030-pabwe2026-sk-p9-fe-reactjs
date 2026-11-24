@@ -1,14 +1,16 @@
-import { useCallback, useEffect, useState } from 'react'
+import { lazy, Suspense, useCallback, useEffect, useState } from 'react'
 import { getUser } from './helpers/apiHelper'
 import useTheme from './hooks/useTheme'
-import AdminDashboard from './features/admin/components/AdminDashboard'
 import { logout } from './features/auth/api/authApi'
 import AuthPage from './features/auth/components/AuthPage'
 import AuthModal from './features/auth/modals/AuthModal'
-import AuthorDashboard from './features/blog/components/AuthorDashboard'
-import PublicArticleDetail from './features/blog/components/PublicArticleDetail'
 import PublicArticleList from './features/blog/components/PublicArticleList'
 import StickyNavbar from './features/blog/components/StickyNavbar'
+
+// Halaman berat dimuat hanya saat dibutuhkan (memecah bundle JS & CSS Toast UI).
+const AdminDashboard = lazy(() => import('./features/admin/components/AdminDashboard'))
+const AuthorDashboard = lazy(() => import('./features/blog/components/AuthorDashboard'))
+const PublicArticleDetail = lazy(() => import('./features/blog/components/PublicArticleDetail'))
 
 const parseRoute = (path) => {
   if (path === '/' || path === '/public') return { name: 'home' }
@@ -24,6 +26,14 @@ const redirectFor = (route, user) => {
   if (route.name === 'admin' && user.role !== 'admin') return '/'
   if ((route.name === 'login' || route.name === 'register') && user) return '/author'
   return null
+}
+
+function PageFallback() {
+  return (
+    <div role="status" className="mx-auto mt-16 max-w-md text-center text-slate-500">
+      Memuat halaman…
+    </div>
+  )
 }
 
 /** Orkestrator SPA: routing berbasis path + popstate, navbar, sesi login. */
@@ -108,7 +118,9 @@ export default function App() {
         onLogin={() => setLoginOpen(true)}
         onLogout={handleLogout}
       />
-      <main>{page}</main>
+      <main>
+        <Suspense fallback={<PageFallback />}>{page}</Suspense>
+      </main>
       <AuthModal open={loginOpen} onClose={() => setLoginOpen(false)} onSuccess={handleAuthSuccess} onNavigate={navigate} />
     </div>
   )

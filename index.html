@@ -7,10 +7,26 @@
       name="description"
       content="Delcom Blog: bacaan terkini dari para penulis Delcom Blog seputar teknologi dan topik umum."
     />
+    <link rel="icon" href="data:," />
     <title>Delcom Blog</title>
+    <style>
+      body { margin: 0; background: #f8fafc; color: #0f172a; font-family: system-ui, sans-serif; }
+      .app-shell__bar { padding: 16px 24px; border-bottom: 1px solid #e2e8f0; font-size: 18px; }
+      .app-shell__text { padding: 32px 24px; margin: 0; color: #475569; }
+      @media (prefers-color-scheme: dark) {
+        body { background: #020617; color: #e2e8f0; }
+        .app-shell__bar { border-bottom-color: #1e293b; }
+        .app-shell__text { color: #94a3b8; }
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="app-shell" role="status">
+        <div class="app-shell__bar"><strong>Delcom Blog</strong></div>
+        <p class="app-shell__text">Memuat…</p>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

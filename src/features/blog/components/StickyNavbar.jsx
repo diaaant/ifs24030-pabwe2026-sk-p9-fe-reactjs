@@ -54,7 +54,11 @@ export default function StickyNavbar({ user, theme, currentPath, onNavigate, onT
             </NavLink>
           )}
           {user ? (
-            <button type="button" onClick={onLogout} className="rounded-lg px-3 py-2 text-left text-sm font-medium text-red-600">
+            <button
+              type="button"
+              onClick={onLogout}
+              className="rounded-lg px-3 py-2 text-left text-sm font-medium text-red-600 dark:text-red-400"
+            >
               Keluar ({user.username})
             </button>
           ) : (
