@@ -1,5 +1,6 @@
 const TOKEN_KEY = 'delcom_token'
 const USER_KEY = 'delcom_user'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
 export const getToken = () => localStorage.getItem(TOKEN_KEY)
 
@@ -39,7 +40,7 @@ export async function apiRequest(path, { method = 'GET', body } = {}) {
     init.body = JSON.stringify(body)
   }
 
-  const response = await fetch(path, init)
+  const response = await fetch(`${API_BASE_URL}${path}`, init)
 
   let payload
   try {
