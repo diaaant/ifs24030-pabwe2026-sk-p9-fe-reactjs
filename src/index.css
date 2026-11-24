@@ -1,20 +1,33 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Warna teks abu-abu yang lolos kontras 4.5:1 di mode terang dan gelap.
+   Menggantikan text-slate-500 (#62748e) tanpa mengubah komponen. */
+@theme inline {
+  --color-slate-500: var(--muted);
+}
+
 :root {
   --accent: #4f46e5;
   --accent-hover: #4338ca;
   --accent-soft: #eef2ff;
+  --accent-dark: #a5b4fc; /* warna teks aksen di mode gelap */
+  --muted: #55657d;
 }
 [data-accent='emerald'] {
-  --accent: #059669;
-  --accent-hover: #047857;
+  --accent: #047857;
+  --accent-hover: #065f46;
   --accent-soft: #ecfdf5;
+  --accent-dark: #6ee7b7;
 }
 [data-accent='rose'] {
-  --accent: #e11d48;
-  --accent-hover: #be123c;
+  --accent: #be123c;
+  --accent-hover: #9f1239;
   --accent-soft: #fff1f2;
+  --accent-dark: #fda4af;
+}
+.dark {
+  --muted: #94a3b8;
 }
 
 body {
@@ -39,6 +52,9 @@ body {
 }
 .text-accent {
   color: var(--accent);
+}
+.dark .text-accent {
+  color: var(--accent-dark);
 }
 .bg-accent-soft {
   background-color: var(--accent-soft);
