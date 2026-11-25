@@ -1,4 +1,5 @@
-import Swal from 'sweetalert2'
+// SweetAlert2 dimuat saat dibutuhkan agar tidak ikut bundle awal beranda.
+const loadSwal = () => import('sweetalert2').then((module) => module.default)
 
 export const formatDate = (value) => {
   if (!value) return '-'
@@ -9,13 +10,18 @@ export const formatDate = (value) => {
   })
 }
 
-export const showSuccessAlert = (message) =>
-  Swal.fire({ icon: 'success', title: 'Berhasil', text: message, timer: 1800, showConfirmButton: false })
+export const showSuccessAlert = async (message) => {
+  const Swal = await loadSwal()
+  return Swal.fire({ icon: 'success', title: 'Berhasil', text: message, timer: 1800, showConfirmButton: false })
+}
 
-export const showErrorAlert = (message) =>
-  Swal.fire({ icon: 'error', title: 'Gagal', text: message })
+export const showErrorAlert = async (message) => {
+  const Swal = await loadSwal()
+  return Swal.fire({ icon: 'error', title: 'Gagal', text: message })
+}
 
 export const showConfirmDialog = async (text) => {
+  const Swal = await loadSwal()
   const result = await Swal.fire({
     icon: 'warning',
     title: 'Apakah Anda yakin?',

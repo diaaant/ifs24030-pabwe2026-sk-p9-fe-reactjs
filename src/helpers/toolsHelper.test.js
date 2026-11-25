@@ -19,9 +19,9 @@ describe('formatDate', () => {
 })
 
 describe('alerts', () => {
-  it('shows success and error dialogs', () => {
-    showSuccessAlert('Tersimpan')
-    showErrorAlert('Gagal')
+  it('shows success and error dialogs', async () => {
+    await showSuccessAlert('Tersimpan')
+    await showErrorAlert('Gagal')
 
     expect(Swal.fire).toHaveBeenNthCalledWith(1, expect.objectContaining({ icon: 'success', text: 'Tersimpan' }))
     expect(Swal.fire).toHaveBeenNthCalledWith(2, expect.objectContaining({ icon: 'error', text: 'Gagal' }))
